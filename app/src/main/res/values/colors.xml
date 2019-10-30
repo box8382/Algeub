@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="baseColor500">#6002ee</color>
+    <color name="puble300">#9965f4</color>
+    <color name="puble200">#b794f6</color>
+    <color name="puble50">#efe5fd</color>
+
+    <color name="white">#FFFFFF</color>
+
+</resources>
