@@ -15,6 +15,7 @@ public class AdapterFragment extends FragmentPagerAdapter {
         this.mPageCount=pageCount;
     }
 
+
     @NonNull
     @Override
     public Fragment getItem(int position) {
