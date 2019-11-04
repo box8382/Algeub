@@ -9,32 +9,23 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class AdapterFragment extends FragmentPagerAdapter {
 
     private int mPageCount;
+    private Fragment[] fragments=new Fragment[4];
 
     public AdapterFragment(@NonNull FragmentManager fm, int pageCount) {
         super(fm,pageCount);
         this.mPageCount=pageCount;
+
+        fragments[0]=new FragmentHome();
+        fragments[1]=new FragmentList();
+        fragments[2]=new FragmentAlram();
+        fragments[3]=new FragmentTalk();
     }
 
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                FragmentHome fragmentHome=new FragmentHome();
-                return fragmentHome;
-            case 1:
-                FragmentList fragmentList=new FragmentList();
-                return fragmentList;
-            case 2:
-                FragmentAlram fragmentAlram=new FragmentAlram();
-                return fragmentAlram;
-            case 3:
-                FragmentTalk fragmentTalk=new FragmentTalk();
-                return fragmentTalk;
-            default:
-                return null;
-        }
+        return fragments[position];
     }
 
     @Override

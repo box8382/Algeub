@@ -7,6 +7,22 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/puble400"
+        app:titleTextColor="@color/white">
+        <com.pmkproject.algeub.TitleTextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/baseColor500"
+            android:textSize="25sp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
     <com.pmkproject.algeub.NonSwipeViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"

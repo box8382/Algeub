@@ -1,6 +1,7 @@
 package com.pmkproject.algeub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -14,10 +15,16 @@ public class MainActivity extends AppCompatActivity {
     TabLayout mTabLayout;
     AdapterFragment mAdapterFragment;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mViewPager=findViewById(R.id.viewpager);
         mTabLayout=findViewById(R.id.tablayout);
@@ -27,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mTabLayout.setupWithViewPager(mViewPager);
-
 
         mTabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
         mTabLayout.getTabAt(1).setIcon(R.drawable.ic_list);
