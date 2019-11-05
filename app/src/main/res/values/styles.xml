@@ -12,7 +12,6 @@
         <item name="colorPrimary">@color/baseColor500</item>
         <item name="colorPrimaryDark">@color/baseColor500</item>
         <item name="colorAccent">@color/colorAccent</item>
-
     </style>
 
 </resources>

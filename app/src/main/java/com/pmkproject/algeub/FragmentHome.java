@@ -1,19 +1,16 @@
 package com.pmkproject.algeub;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 public class FragmentHome extends Fragment {
@@ -50,7 +47,8 @@ public class FragmentHome extends Fragment {
         switch (item.getItemId()){
             //설정 옵션
             case R.id.config:
-                Toast.makeText(getActivity(), "여기다가 설정엑티비티 띄우면됨", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), ConfigActivity.class);
+                startActivity(intent);
                 break;
         }
 
