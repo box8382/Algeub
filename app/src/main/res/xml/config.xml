@@ -3,7 +3,8 @@
     <SwitchPreference
         android:key="lock"
         android:title="잠금설정"
-        android:summary="앱에 잠금기능을 추가합니다"/>
+        android:summary="앱에 잠금기능을 추가합니다">
+    </SwitchPreference>
 
     <PreferenceScreen android:title="패턴변경"
         android:summary="잠금화면에 패턴을 변경합니다"
