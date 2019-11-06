@@ -6,7 +6,8 @@
             android:key="lock"
             android:title="잠금설정"
             android:summary="앱에 잠금기능을 추가합니다">
-            <intent android:targetPackage="com.pmkproject.algeub"
+            <intent
+                android:targetPackage="com.pmkproject.algeub"
                 android:targetClass="com.pmkproject.algeub.PatternLockChangeActivity"/>
         </Preference>
 

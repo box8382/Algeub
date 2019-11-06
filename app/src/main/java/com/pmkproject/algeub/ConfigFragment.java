@@ -45,7 +45,7 @@ public class ConfigFragment extends PreferenceFragment {
                     SharedPreferences.Editor editor=sf.edit();
                     editor.remove("passward");
                     editor.commit();
-                    Toast.makeText(getActivity(), "잠금을 해제하였습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "잠금기능을 제거하였습니다", Toast.LENGTH_SHORT).show();
 
                 }
             }).setNegativeButton("취소",null).create().show();

@@ -67,7 +67,7 @@ public class PatternLockChangeActivity extends AppCompatActivity {
                  if(patternPassward1.equals(patternPassward2)){
                      //여기에서 값 패스워드 값 저장
                      SavePassward();
-                     Toast.makeText(PatternLockChangeActivity.this, "잠금설정 하였습니다", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(PatternLockChangeActivity.this, "잠금기능을 활성화하였습니다", Toast.LENGTH_SHORT).show();
                      finish();
                  }else{
                      tv.setText("패턴이 일치하지않습니다");

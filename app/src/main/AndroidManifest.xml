@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".PatternLockMainActivity"></activity>
-        <activity android:name=".PatternLockChangeActivity" />
+        <activity android:name=".PatternLockMainActivity" android:launchMode="singleInstance"></activity>
+        <activity android:name=".PatternLockChangeActivity" android:launchMode="singleInstance"/>
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ConfigActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

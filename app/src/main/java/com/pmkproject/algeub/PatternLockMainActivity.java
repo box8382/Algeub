@@ -26,7 +26,7 @@ public class PatternLockMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pattern_lock_main);
+        setContentView(R.layout.activity_pattern_main_lock);
 
         patternLockView=findViewById(R.id.pattern_lock_view_m);
         tv=findViewById(R.id.pattern_tv_m);
