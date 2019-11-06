@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <SwitchPreference
-        android:key="lock"
-        android:title="잠금설정"
-        android:summary="앱에 잠금기능을 추가합니다">
-    </SwitchPreference>
 
-    <PreferenceScreen android:title="패턴변경"
-        android:summary="잠금화면에 패턴을 변경합니다"
-        android:dependency="lock">
-    </PreferenceScreen>
+    <PreferenceCategory android:title="보안">
+        <Preference
+            android:key="lock"
+            android:title="잠금설정"
+            android:summary="앱에 잠금기능을 추가합니다">
+            <intent android:targetPackage="com.pmkproject.algeub"
+                android:targetClass="com.pmkproject.algeub.PatternLockChangeActivity"/>
+        </Preference>
+
+        <Preference
+            android:key="unlock"
+            android:title="사용 안 함"
+            android:summary="저장되어있는 잠금기능을 제거합니다">
+        </Preference>
+
+    </PreferenceCategory>
+
+
+
+
+
+
 </PreferenceScreen>
