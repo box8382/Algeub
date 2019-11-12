@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/puble200">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pay_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/puble300"
+            app:cardElevation="8dp">
+            <com.pmkproject.algeub.TitleTextView
+                android:id="@+id/pay_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아르바이트 이름"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_clock"
+            android:layout_toLeftOf="@id/pay_clock"
+            android:layout_alignTop="@id/pay_clock"
+            android:layout_marginTop="4dp"/>
+
+        <com.pmkproject.algeub.TitleTextView
+            android:id="@+id/pay_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/pay_cardview"
+            android:padding="4dp"
+            android:textSize="12sp"
+            android:text="08:00 ~ 16:00"/>
+
+        <com.pmkproject.algeub.TitleTextView
+            android:id="@+id/pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8,000 원"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/pay_clock"
+            android:padding="8dp"/>
+
+        <View
+            android:id="@+id/pay_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/puble50"
+            android:layout_below="@id/pay"/>
+
+        <com.pmkproject.algeub.TitleTextView
+            android:id="@+id/pay_text"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/pay_line"
+            android:textSize="12sp"
+            android:text="메모가 없습니다"
+            android:layout_margin="8dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
