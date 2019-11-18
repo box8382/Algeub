@@ -29,6 +29,7 @@ public class FragmentList extends Fragment {
 
     RecyclerView recyclerView;
     ArrayList<ItemPay> pays=new ArrayList<>();
+    ArrayList<GItemPay> globals=new ArrayList<>();
     RecyclerListAdapter adapter;
 
     SQLiteDatabase db; //데이터 베이스
@@ -61,21 +62,25 @@ public class FragmentList extends Fragment {
             int listLast=cursor.getInt(4);
             String listMemo=cursor.getString(5);
 
-            //수정기능 넣으면 다시 쓸거..
-//            int listDelivery=cursor.getInt(6);
-//            boolean listNightPay=(cursor.getInt(7)==1)?true:false;
-//            int listFree=cursor.getInt(8);
+            int listDelivery=cursor.getInt(6);
+            boolean listNightPay=(cursor.getInt(7)==1)?true:false;
+            int listFree=cursor.getInt(8);
 
             String sStart=String.format("%02d:%02d",listStart/60,listStart%60);
             String sLast=String.format("%02d:%02d",listLast/60,listLast%60);
+
+            globals.add(new GItemPay(num,listName,listStart,listLast,listPay,listMemo,listDelivery,listNightPay,listFree));
 
             pays.add(new ItemPay(num,listName,sStart+" ~ "+sLast,listPay+" 원",listMemo));
 //            Log.e("TAG",num+"몇번째꺼");
 //            Log.e("TAG",listDelivery+"배달건당액수");
 //            Log.e("TAG",listNightPay+"야간수당 체크여부");
 //            Log.e("TAG",listFree+"자유시간");
+
             count=num;
         }
+
+        G.GlobalListDatas=globals;
         db.close();
 
     }
@@ -136,6 +141,15 @@ public class FragmentList extends Fragment {
                     int listStart=data.getIntExtra("ListStart",480);
                     int listLast=data.getIntExtra("ListLast",1140);
                     String listMemo=data.getStringExtra("ListMemo");
+
+                    int listDelivery=data.getIntExtra("ListDelivery",0);
+                    int listNightPay=data.getIntExtra("ListNightPay",0);
+                    int listFree=data.getIntExtra("ListFree",0);
+
+                    boolean listNightPayB=(listNightPay==1)?true:false;
+
+                    globals.add(new GItemPay(count,listName,listStart,listLast,listPay,listMemo,listDelivery,listNightPayB,listFree));
+                    G.GlobalListDatas=globals;
 
                     String sStart=String.format("%02d:%02d",listStart/60,listStart%60);
                     String sLast=String.format("%02d:%02d",listLast/60,listLast%60);

@@ -326,6 +326,10 @@ public class AddListActivity extends AppCompatActivity {
         intent.putExtra("ListLast",listLast);
         intent.putExtra("ListMemo",listMemo);
 
+        intent.putExtra("ListDelivery",listDelivery);
+        intent.putExtra("ListNightPay",listNightPay);
+        intent.putExtra("ListFree",listFree);
+
 
         Log.e("QQQ","추가할때 데이터베이스에 저장되는 값은 : "+ num);
         db.execSQL("INSERT INTO "+tableName+"(num, name, pay, start, last, memo, delivery, nightPay, free) " +

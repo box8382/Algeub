@@ -83,6 +83,9 @@ public class RecyclerListAdapter extends RecyclerView.Adapter {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             ItemPay itemPay=pays.get(pos);
                             pays.remove(pos);
+
+                            G.GlobalListDatas.remove(pos);
+
                             notifyItemRemoved(pos);
                             db=context.openOrCreateDatabase(dbName,context.MODE_PRIVATE,null);
 

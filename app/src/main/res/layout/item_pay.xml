@@ -20,13 +20,14 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardBackgroundColor="@color/puble300"
-            app:cardElevation="8dp">
+            app:cardElevation="4dp">
             <com.pmkproject.algeub.TitleTextView
                 android:id="@+id/pay_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="아르바이트 이름"
                 android:textColor="@color/white"
+                android:textSize="12sp"
                 android:layout_gravity="center"/>
         </androidx.cardview.widget.CardView>
 

@@ -4,5 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:headerColor="@color/puble300"
+        app:todayLabelColor="@color/baseColor500"
+        app:selectionColor="@color/puble200"
+        app:selectionLabelColor="@color/white"
+        app:type="one_day_picker"/>
 
 </RelativeLayout>
