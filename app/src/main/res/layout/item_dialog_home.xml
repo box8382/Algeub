@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/puble200"
+    android:id="@+id/dialog_home_item_cardview"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     android:layout_margin="8dp">

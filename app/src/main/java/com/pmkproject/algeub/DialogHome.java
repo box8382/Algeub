@@ -2,20 +2,26 @@ package com.pmkproject.algeub;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DialogHome {
+public class DialogHome extends Dialog implements View.OnClickListener{
 
     private Context context;
     private int year;
     private int month;
     private int day;
+    private int position;
+
+    private DialogHomeListener dialogHomeListener;
 
     TitleTextView date;
     RecyclerView recyclerView;
@@ -24,45 +30,56 @@ public class DialogHome {
     ImageView exit;
     Button add;
 
-    public DialogHome(Context context,int year,int month, int day) {
-        this.context = context;
-        this.year=year;
+    interface DialogHomeListener{
+        void onPositiveClicked(int position);
+    }
+    public void setDialogHomeListener(DialogHomeListener dialogHomeListener){
+        this.dialogHomeListener=dialogHomeListener;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public DialogHome(@NonNull Context context, int year, int month, int day) {
+        super(context);
+        this.context=context;
+        this.year = year;
         this.month = month;
         this.day = day;
     }
 
-    public void callFunction(){
-        Dialog dialog=new Dialog(context);
-        dialog.setContentView(R.layout.dialog_home);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_home);
 
-        //맨뒤에 값은 체크박스 boolean값인데 아직 생각중임... Adapter에 아직 값도 추가안함
-
-        recyclerView=dialog.findViewById(R.id.dialog_home_recycler);
-        adapter=new AdapterHomeDialog(context);
+        recyclerView=findViewById(R.id.dialog_home_recycler);
+        adapter=new AdapterHomeDialog(context,this);
         recyclerView.setAdapter(adapter);
 
-        date=dialog.findViewById(R.id.dialog_home_date);
-        exit=dialog.findViewById(R.id.dialog_home_exit);
-        add=dialog.findViewById(R.id.dialog_home_add);
-
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        date=findViewById(R.id.dialog_home_date);
+        exit=findViewById(R.id.dialog_home_exit);
+        add=findViewById(R.id.dialog_home_add);
 
         date.setText(year+"년 "+month+"월 "+day+"일");
 
+        exit.setOnClickListener(this);
+        add.setOnClickListener(this);
 
-
-        //액티비티의 타이틀바를 숨긴다? (왜쓰는지 모르겠음)
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
-
-
-        dialog.show();
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.dialog_home_add:
+                dialogHomeListener.onPositiveClicked(position);
+                dismiss();
+                break;
+            case R.id.dialog_home_exit:
+                cancel();
+                break;
+        }
+
+    }
 }

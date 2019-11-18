@@ -23,13 +23,19 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class FragmentHome extends Fragment {
 
     CalendarView calendarView;
     boolean isEdit=false;
+    List<EventDay> events=new ArrayList<>();
+    ArrayList<ItemHomeCalendar> itemHomeCalendars=new ArrayList<>();
+
+    TextView tv;
 
 
     //데이터관리같은건 여기서 거의 맨처음 실행되고 onPause 되도 여기를 재시작안함
@@ -52,6 +58,10 @@ public class FragmentHome extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         calendarView=view.findViewById(R.id.calendar);
+        calendarView.setEvents(events);
+
+        tv=view.findViewById(R.id.tv);
+
         Log.e("edit","onViewCreate 실행");
 
     }
@@ -66,8 +76,6 @@ public class FragmentHome extends Fragment {
         }else{
             unEditMode();
         }
-//        getActivity().setTitle("알바달력");
-//        unEditMode();
         Log.e("edit","onCreateOptionsMenu 실행");
 
         inflater.inflate(R.menu.menu_home,menu);
@@ -97,34 +105,44 @@ public class FragmentHome extends Fragment {
     OnDayClickListener editMode=new OnDayClickListener() {
         @Override
         public void onDayClick(EventDay eventDay) {
-            Calendar c=eventDay.getCalendar();
+            Calendar calendar=eventDay.getCalendar();
+
 
             SimpleDateFormat format=new SimpleDateFormat("yyyy");
-            int year=Integer.parseInt(format.format(c.getTimeInMillis())); //년도
+            int year=Integer.parseInt(format.format(calendar.getTimeInMillis())); //년도
             format=new SimpleDateFormat("MM");
-            int month=Integer.parseInt(format.format(c.getTimeInMillis())); //월
+            int month=Integer.parseInt(format.format(calendar.getTimeInMillis())); //월
             format=new SimpleDateFormat("dd");
-            int day=Integer.parseInt(format.format(c.getTimeInMillis())); //일
+            int day=Integer.parseInt(format.format(calendar.getTimeInMillis())); //일
 
-
-            //확인작업 !!
-//            StringBuffer buffer=new StringBuffer();
-//            for(int i=0;i<G.GlobalListDatas.size();i++){
-//                GItemPay p=G.GlobalListDatas.get(i);
-//                buffer.append(p.getNum()+"넘버값\n"+
-//                p.getTitle()+"타이틀이름\n"+
-//                p.getPay()+"시급\n"+
-//                p.getStartClock()+"시작시간\n"+
-//                p.getLastClock()+"종료사건\n"+
-//                p.getText()+"메모장\n"+
-//                p.getDelivery()+"배달건당\n"+
-//                p.getNightPay()+"야간수당여부\n"+
-//                p.getFree()+"자유시간\n-----------------------------\n");
-//            }
-//            new AlertDialog.Builder(getActivity()).setMessage(buffer.toString()).create().show();
 
             DialogHome dialogHome=new DialogHome(getActivity(),year,month,day);
-            dialogHome.callFunction();
+            dialogHome.setDialogHomeListener(new DialogHome.DialogHomeListener() {
+                @Override
+                public void onPositiveClicked(int position) {
+                    if(position==0){
+
+                        //저장을할때 아무것도 누르지 않은상태
+
+                        return;
+                    }
+
+                    EventDay day=new EventDay(calendar,R.drawable.ic_clock);
+
+                    for(int i=0;i<itemHomeCalendars.size();i++){
+                        if(calendar.getTimeInMillis()==itemHomeCalendars.get(i).getCalendar().getTimeInMillis()){
+                            itemHomeCalendars.remove(i);
+                        }
+                    }
+                    itemHomeCalendars.add(new ItemHomeCalendar(calendar,position-1,day));
+
+                    events.add(day);
+
+                    calendarView.setEvents(events);
+
+                }
+            });
+            dialogHome.show();
 
         }
     };
@@ -132,7 +150,23 @@ public class FragmentHome extends Fragment {
     OnDayClickListener unEditMode=new OnDayClickListener() {
         @Override
         public void onDayClick(EventDay eventDay) {
-            Toast.makeText(getActivity(), "일반모드", Toast.LENGTH_SHORT).show();
+            Calendar calendar=eventDay.getCalendar();
+            for(int i=0;i<itemHomeCalendars.size();i++){
+                ItemHomeCalendar item=itemHomeCalendars.get(i);
+                if(calendar.getTimeInMillis()==item.getCalendar().getTimeInMillis()){
+
+                    GItemPay itemPay=G.GlobalListDatas.get(item.getPosition());
+                    String title=itemPay.getTitle();
+                    int pay=itemPay.getPay();
+
+                    tv.setText("제목"+title+"\n 시급"+pay);
+                    break;
+                }else{
+                    tv.setText("저장된 내용이 없습니다");
+                }
+            }
+
+
         }
     };
 
