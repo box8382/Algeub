@@ -176,7 +176,8 @@
             <CheckBox android:id="@+id/check1_delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="배달"/>
+                android:text="배달"
+                android:visibility="gone"/>
 
                 <EditText
                     android:id="@+id/list_delivery"
@@ -189,7 +190,8 @@
                     android:padding="8dp"
                     android:maxLength="9"
                     android:background="@drawable/bg_edittext"
-                    android:layout_marginLeft="8dp"/>
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone"/>
 
             <CheckBox android:id="@+id/check2_nightpay"
                 android:layout_width="wrap_content"

@@ -38,5 +38,12 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/dialog_home_recycler"/>
 
+    <Button
+        android:id="@+id/dialog_home_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="데이터 삭제"
+        android:layout_below="@id/dialog_home_recycler"/>
+
 
 </RelativeLayout>

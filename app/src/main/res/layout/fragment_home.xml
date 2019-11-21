@@ -8,9 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <com.applandeo.materialcalendarview.CalendarView
                 android:id="@+id/calendar"
@@ -23,16 +24,110 @@
                 app:type="one_day_picker"
                 app:eventsEnabled="true"/>
 
-            <TextView
-                android:id="@+id/tv"
+            <com.pmkproject.algeub.TitleTextView
+                android:id="@+id/home_pay_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="테스트용"
-                android:textSize="30sp"
-                android:layout_below="@id/calendar"/>
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:text="이번달 예상 임금은 총 0 원 입니다"
+                android:textColor="@color/baseColor500"
+                android:layout_gravity="center"/>
+
+            <com.pmkproject.algeub.TitleTextView
+                android:id="@+id/home_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/puble300"
+                android:padding="8dp"
+                android:text="날짜를 선택해주세요"/>
+
+            <RelativeLayout
+                android:id="@+id/home_databox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.pmkproject.algeub.TitleTextView
+                    android:id="@+id/home_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textColor="@color/puble200"
+                    android:text="아르바이트 명"/>
+
+                <com.pmkproject.algeub.TitleTextView
+                    android:id="@+id/home_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:text="아르바이트 시간"
+                    android:layout_below="@id/home_name"/>
+
+                <com.pmkproject.algeub.TitleTextView
+                    android:id="@+id/home_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:text="시급"
+                    android:layout_below="@id/home_time"/>
+
+                <com.pmkproject.algeub.TitleTextView
+                    android:id="@+id/home_pay_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:text="오늘 버는 예상금액"
+                    android:layout_below="@id/home_pay"/>
+
+                <RelativeLayout
+                    android:id="@+id/home_delivery_visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:visibility="gone">
+
+                    <com.pmkproject.algeub.TitleTextView
+                        android:id="@+id/deliverytv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="배달 횟수"
+                        android:layout_alignLeft="@id/home_delivery"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/home_delivery"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:layout_below="@id/deliverytv"
+                        android:text="0"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:clickable="true"/>
+
+                </RelativeLayout>
 
 
-        </RelativeLayout>
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
 
 
     </ScrollView>

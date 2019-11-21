@@ -5,29 +5,29 @@ import com.applandeo.materialcalendarview.EventDay;
 import java.util.Calendar;
 
 public class ItemHomeCalendar {
-    Calendar calendar;
+    Long calendar;
     int position;
-    EventDay eventDay;
+    int cnt;
 
-    public ItemHomeCalendar(Calendar calendar,int position,EventDay eventDay) {
+    public ItemHomeCalendar(Long calendar,int position,int cnt) {
         this.calendar = calendar;
         this.position = position;
-        this.eventDay = eventDay;
+        this.cnt=cnt;
     }
 
-    public EventDay getEventDay() {
-        return eventDay;
+    public int getCnt() {
+        return cnt;
     }
 
-    public void setEventDay(EventDay eventDay) {
-        this.eventDay = eventDay;
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
     }
 
-    public Calendar getCalendar() {
+    public Long getCalendar() {
         return calendar;
     }
 
-    public void setCalendar(Calendar calendar) {
+    public void setCalendar(Long calendar) {
         this.calendar = calendar;
     }
 

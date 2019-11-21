@@ -29,9 +29,11 @@ public class DialogHome extends Dialog implements View.OnClickListener{
 
     ImageView exit;
     Button add;
+    Button delete;
 
     interface DialogHomeListener{
         void onPositiveClicked(int position);
+        void onNegativeClicked();
     }
     public void setDialogHomeListener(DialogHomeListener dialogHomeListener){
         this.dialogHomeListener=dialogHomeListener;
@@ -61,9 +63,12 @@ public class DialogHome extends Dialog implements View.OnClickListener{
         date=findViewById(R.id.dialog_home_date);
         exit=findViewById(R.id.dialog_home_exit);
         add=findViewById(R.id.dialog_home_add);
+        delete=findViewById(R.id.dialog_home_delete);
+
 
         date.setText(year+"년 "+month+"월 "+day+"일");
 
+        delete.setOnClickListener(this);
         exit.setOnClickListener(this);
         add.setOnClickListener(this);
 
@@ -76,8 +81,12 @@ public class DialogHome extends Dialog implements View.OnClickListener{
                 dialogHomeListener.onPositiveClicked(position);
                 dismiss();
                 break;
+            case R.id.dialog_home_delete:
+                dialogHomeListener.onNegativeClicked();
+                dismiss();
+                break;
             case R.id.dialog_home_exit:
-                cancel();
+                dismiss();
                 break;
         }
 
