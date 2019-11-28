@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BoardSActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/boards_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStart="0dp"
+        android:background="@color/baseColor500">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/boards_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="no.1"
+                android:padding="8dp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/boards_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제목입니드아아"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_alignParentRight="true"
+        android:padding="8dp"
+        android:layout_below="@id/boards_toolbar"
+        android:onClick="delete"/>
+
+
+
+    <TextView
+        android:id="@+id/boards_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/boards_toolbar"
+        android:text="내용입니다아앙아아아아아"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/boards_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ㅇㅇ 님의 게시글 입니다"
+        android:textColor="@color/baseColor500"
+        android:layout_above="@id/boards_date"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"/>
+
+    <TextView
+        android:id="@+id/boards_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00/00/00"
+        android:textColor="@color/puble300"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"/>
+
+
+
+
+</RelativeLayout>

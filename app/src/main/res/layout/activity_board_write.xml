@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BoardWriteActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/board_add_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/puble400"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:text="취소"
+                android:textColor="@color/puble200"
+                android:layout_margin="12dp"
+                android:clickable="true"
+                android:onClick="cancel"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="게시물 만들기"
+                android:textSize="16sp"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:text="게시"
+                android:layout_alignParentRight="true"
+                android:layout_margin="12dp"
+                android:textColor="@color/puble200"
+                android:clickable="true"
+                android:onClick="post"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/board_add_toolbar"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/board_add_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작성자 님의 게시글입니다."
+            android:textColor="@color/baseColor500"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/board_add_t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/baseColor500"
+            android:text="제목"
+            android:textSize="12sp"
+            android:layout_below="@id/board_add_writer"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"/>
+
+        <EditText
+            android:id="@+id/board_add_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_below="@id/board_add_t1"
+            android:background="@drawable/bg_edittext"
+            android:padding="8dp"
+            android:maxLength="30"/>
+
+        <TextView
+            android:id="@+id/board_add_title_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/board_add_title"
+            android:layout_alignParentRight="true"
+            android:text="0/30"
+            android:textColor="@color/puble300"/>
+
+        <TextView
+            android:id="@+id/board_add_t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:textColor="@color/baseColor500"
+            android:layout_below="@id/board_add_title_size"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/board_add_t2"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/board_add_content"
+                android:layout_width="match_parent"
+                android:inputType="textMultiLine"
+                android:layout_height="0dp"
+                android:gravity="top"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edittext"
+                android:padding="8dp"
+                android:layout_below="@id/board_add_t2"
+                android:maxLength="500"/>
+
+            <TextView
+                android:id="@+id/board_add_content_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0/500"
+                android:layout_below="@id/board_add_content"
+                android:layout_gravity="right"
+                android:textColor="@color/puble300"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

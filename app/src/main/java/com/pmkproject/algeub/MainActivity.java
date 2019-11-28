@@ -1,8 +1,11 @@
 package com.pmkproject.algeub;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -10,11 +13,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     NonSwipeViewPager mViewPager;
     TabLayout mTabLayout;
@@ -26,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     String patternPassward;
     //설정파일명
     String fileConfig="Config";
+
+    //NavigationView nav;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +57,48 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent,10);
         }
 
-
+        mViewPager=findViewById(R.id.viewpager);
+        mTabLayout=findViewById(R.id.tablayout);
 
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mViewPager=findViewById(R.id.viewpager);
-        mTabLayout=findViewById(R.id.tablayout);
+        drawerLayout=findViewById(R.id.drawer);
+        //nav=findViewById(R.id.nav_view);
+        toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        toggle.syncState();
+        drawerLayout.addDrawerListener(toggle);
+
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.getPosition()==3){
+                    toggle.setDrawerIndicatorEnabled(true);
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
+                }else{
+                    toggle.setDrawerIndicatorEnabled(false);
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
 
         mAdapterFragment=new AdapterFragment(getSupportFragmentManager(),4);
         mViewPager.setAdapter(mAdapterFragment);
-
 
         mTabLayout.setupWithViewPager(mViewPager);
 

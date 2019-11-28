@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -103,8 +104,6 @@ public class FragmentList extends Fragment {
 
         //불러온데이터를 한번 읽어오기!
         adapter.notifyDataSetChanged();
-
-
 
     }
 
