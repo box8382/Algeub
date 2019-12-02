@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.security.auth.login.LoginException;
@@ -20,14 +21,16 @@ public class RecyclerListAdapter extends RecyclerView.Adapter {
 
     Context context;
     ArrayList<ItemPay> pays;
+    FragmentList fragmentList;
 
     SQLiteDatabase db; //데이터 베이스
     String dbName="Data.db";
     String tableName="list";
 
-    public RecyclerListAdapter(Context context, ArrayList<ItemPay> pays) {
+    public RecyclerListAdapter(Context context, ArrayList<ItemPay> pays,FragmentList fragmentList) {
         this.context = context;
         this.pays = pays;
+        this.fragmentList=fragmentList;
     }
 
     @NonNull
@@ -45,7 +48,12 @@ public class RecyclerListAdapter extends RecyclerView.Adapter {
 
         vh.title.setText(itemPay.getTitle());
         vh.clock.setText(itemPay.getClock());
-        vh.pay.setText(itemPay.getPay());
+
+        DecimalFormat myFormatter = new DecimalFormat("###,###");
+        String changePay = myFormatter.format(Integer.parseInt(itemPay.getPay()));
+
+        vh.pay.setText(changePay+" 원");
+
         if(itemPay.getText()!=null) {
             vh.text.setText(itemPay.getText());
         }else{
@@ -91,6 +99,8 @@ public class RecyclerListAdapter extends RecyclerView.Adapter {
 
                             Log.e("QQQ","삭제할때 누른놈의 넘버값은 : "+ itemPay.getNum());
                             db.delete(tableName,"num"+"="+itemPay.getNum(),null);
+
+                            fragmentList.viewChangeCheck();
 
                         }
                     }).create().show();

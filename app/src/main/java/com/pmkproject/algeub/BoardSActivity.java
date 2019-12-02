@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +70,12 @@ public class BoardSActivity extends AppCompatActivity {
         if (G.user.getEmail().split("@")[0].equals(writer)) {
             //no값을 이용해 데이터삭제
 
-            deleteData();
+            new AlertDialog.Builder(this).setMessage("글을 삭제하시겠습니까?").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteData();
+                }
+            }).setNegativeButton("취소",null).create().show();
 
 
         }else {

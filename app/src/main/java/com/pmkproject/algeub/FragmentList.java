@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class FragmentList extends Fragment {
     ArrayList<ItemPay> pays=new ArrayList<>();
     ArrayList<GItemPay> globals=new ArrayList<>();
     RecyclerListAdapter adapter;
+    TextView tv;
 
     SQLiteDatabase db; //데이터 베이스
     String dbName="Data.db";
@@ -39,6 +41,11 @@ public class FragmentList extends Fragment {
 
     int count;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewChangeCheck();
+    }
 
     //데이터관리같은건 여기서 거의 맨처음 실행되고 onPause 되도 여기를 재시작안함
     @Override
@@ -72,7 +79,7 @@ public class FragmentList extends Fragment {
 
             globals.add(new GItemPay(num,listName,listStart,listLast,listPay,listMemo,listDelivery,listNightPay,listFree));
 
-            pays.add(new ItemPay(num,listName,sStart+" ~ "+sLast,listPay+" 원",listMemo));
+            pays.add(new ItemPay(num,listName,sStart+" ~ "+sLast,listPay+"",listMemo));
 //            Log.e("TAG",num+"몇번째꺼");
 //            Log.e("TAG",listDelivery+"배달건당액수");
 //            Log.e("TAG",listNightPay+"야간수당 체크여부");
@@ -99,11 +106,13 @@ public class FragmentList extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.list_recycler);
-        adapter=new RecyclerListAdapter(getActivity(),pays);
+        adapter=new RecyclerListAdapter(getActivity(),pays,this);
         recyclerView.setAdapter(adapter);
+        tv=view.findViewById(R.id.list_tv);
 
         //불러온데이터를 한번 읽어오기!
         adapter.notifyDataSetChanged();
+        viewChangeCheck();
 
     }
 
@@ -128,6 +137,7 @@ public class FragmentList extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,12 +163,24 @@ public class FragmentList extends Fragment {
                     String sStart=String.format("%02d:%02d",listStart/60,listStart%60);
                     String sLast=String.format("%02d:%02d",listLast/60,listLast%60);
 
-                    pays.add(new ItemPay(count,listName,sStart+" ~ "+sLast,listPay+" 원",listMemo));
+                    pays.add(new ItemPay(count,listName,sStart+" ~ "+sLast,listPay+"",listMemo));
                     adapter.notifyItemInserted(pays.size()-1);
 
                 }
                 break;
         }
+    }
+
+    void viewChangeCheck(){
+        //여기서 작업수행
+        if(pays.size()<=0){
+            recyclerView.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+        }else{
+            recyclerView.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.GONE);
+        }
+
     }
 
 

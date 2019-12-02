@@ -26,6 +26,7 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +48,7 @@ public class FragmentHome extends Fragment {
     RelativeLayout dataBox;
     RelativeLayout deliveryBox;
     TextView tvDelivery;
-    TitleTextView tvMonthPay;     //이번달 총 임금
+    //TitleTextView tvMonthPay;     //이번달 총 임금
     TitleTextView tvDate;         //날짜
     TitleTextView tvName;         //아르바이트 명
     TitleTextView tvPay;          //시급
@@ -104,7 +105,7 @@ public class FragmentHome extends Fragment {
         dataBox=view.findViewById(R.id.home_databox);
         deliveryBox=view.findViewById(R.id.home_delivery_visible);
         tvDelivery=view.findViewById(R.id.home_delivery);
-        tvMonthPay=view.findViewById(R.id.home_pay_month);
+        //tvMonthPay=view.findViewById(R.id.home_pay_month);
         tvDate=view.findViewById(R.id.home_date);
         tvName=view.findViewById(R.id.home_name);
         tvPay=view.findViewById(R.id.home_pay);
@@ -290,12 +291,15 @@ public class FragmentHome extends Fragment {
                     sum=totalPay+night;
 
 
-                    tvMonthPay.setText("이번달 예상 임금은 총 0 원 입니다");
+                    //tvMonthPay.setText("이번달 예상 임금은 총 0 원 입니다");
                     tvDate.setText(year+"년 "+month+"월 "+day+"일");
                     tvName.setText(title);
                     tvTime.setText(sStart+" ~ "+sLast);
-                    tvPay.setText("시급 : "+pay+" 원");
-                    tvPayToday.setText("예상 금액 : "+(sum)+" 원");
+                    DecimalFormat myFormatter = new DecimalFormat("###,###");
+                    String changePay = myFormatter.format(pay);
+                    tvPay.setText("시급 : "+changePay+" 원");
+                    String changeNum = myFormatter.format(sum);
+                    tvPayToday.setText("예상 금액 : "+(changeNum)+" 원");
 
                     dataBox.setVisibility(View.VISIBLE);
                     break;

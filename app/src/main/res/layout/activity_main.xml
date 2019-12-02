@@ -113,7 +113,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/puble200"
                 android:padding="16dp"
                 >
 
@@ -121,7 +120,7 @@
                     android:id="@+id/header_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_header_btn"
+                    android:background="@drawable/bg_talk_item"
                     android:padding="8dp"
                     android:clickable="true">
 
