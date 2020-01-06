@@ -8,8 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -40,10 +43,19 @@ public class MainActivity extends AppCompatActivity{
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                String[] permisstions=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permisstions,100);
+            }
+        }
 
 
 
