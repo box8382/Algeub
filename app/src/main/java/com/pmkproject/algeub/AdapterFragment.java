@@ -1,9 +1,6 @@
 package com.pmkproject.algeub;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -19,7 +16,7 @@ public class AdapterFragment extends FragmentPagerAdapter {
 
         fragments[0]=new FragmentHome();
         fragments[1]=new FragmentList();
-        fragments[2]=new FragmentAlram();
+        fragments[2]=new FragmentAlarm();
         fragments[3]=new FragmentTalk();
 
     }
