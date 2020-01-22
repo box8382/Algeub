@@ -4,22 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AlarmAddView">
+    tools:context=".AlarmAddView"
+    android:background="#666666">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/alarm_view_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        android:background="@color/baseColor500"/>
 
     <TimePicker
         android:id="@+id/alarm_view_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"/>
+        android:timePickerMode="spinner"
+        android:layout_below="@id/alarm_view_toolbar"
+        android:layout_marginTop="12dp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
+<!--    <EditText-->
+<!--        android:id="@+id/alarm_view_name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="15"-->
+<!--        android:layout_below="@id/alarm_view_picker"-->
+<!--        android:background="@drawable/bg_edittext"-->
+<!--        android:padding="8dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:hint="알람 이름"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:inputType="text"-->
+<!--        android:maxLength="25"/>-->
+
+    <RelativeLayout
+        android:id="@+id/alarm_view_repeat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="15"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:hint="알람 제목"
-        android:layout_below="@id/alarm_view_picker"/>
+        android:padding="12dp"
+        android:layout_below="@id/alarm_view_picker"
+        android:background="@drawable/bg_alarm_view"
+        android:layout_marginBottom="2dp"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반복"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/alarm_view_repeat_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="안함  ▶"
+            android:layout_alignParentRight="true"
+            android:textSize="16dp"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/alarm_view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:layout_below="@id/alarm_view_repeat"
+        android:background="@drawable/bg_alarm_view"
+        android:layout_marginBottom="2dp"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람이름"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/alarm_view_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람  ▶"
+            android:layout_alignParentRight="true"
+            android:textSize="16dp"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/alarm_view_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:layout_below="@id/alarm_view_name"
+        android:background="@drawable/bg_alarm_view"
+        android:layout_marginBottom="2dp"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사운드"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/alarm_view_sound_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="없음  ▶"
+            android:layout_alignParentRight="true"
+            android:textSize="16dp"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp">
+        <TableRow>
+            <Button
+                android:text="취소"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                android:backgroundTint="#555555"/>
+            <Button
+                android:text="저장"
+                android:layout_marginRight="12dp"
+                android:backgroundTint="#555555"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+
+
 
 
 </RelativeLayout>
