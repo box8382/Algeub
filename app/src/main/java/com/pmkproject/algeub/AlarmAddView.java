@@ -6,7 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,7 +57,7 @@ public class AlarmAddView extends AppCompatActivity {
                     repeatDialog();
                     break;
                 case R.id.alarm_view_name:
-
+                    nameDialog();
                     break;
                 case R.id.alarm_view_sound:
 
@@ -64,7 +67,8 @@ public class AlarmAddView extends AppCompatActivity {
     };
 
     private void repeatDialog(){
-        AlertDialog.Builder repeatDialog=new AlertDialog.Builder(AlarmAddView.this,android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
+        AlertDialog.Builder repeatDialog=new AlertDialog.Builder(AlarmAddView.this);
+        repeatDialog.setIcon(R.drawable.ic_access_time_black_24dp);
         repeatDialog.setTitle("요일을 선택하세요").setMultiChoiceItems(items,choiceRepeatBool, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -75,13 +79,35 @@ public class AlarmAddView extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 StringBuffer t= new StringBuffer();
+
                 for(int i=0;i<repeatList.size();i++){
-                    if(repeatList.size()-1==i) t.append(repeatList.get(i)+"  ▶");
+                    if(repeatList.size()-1==i) t.append(repeatList.get(i));
                     else t.append(repeatList.get(i)+", ");
                 }
                 repeatTv.setText(t.toString());
+                if(repeatList.size()==0) repeatTv.setText("안함");
+
             }
         }).create().show();
+    }
+
+    private void nameDialog(){
+        AlertDialog.Builder nameDialog=new AlertDialog.Builder(AlarmAddView.this);
+        EditText et=new EditText(AlarmAddView.this);
+        et.setText(nameTv.getText());
+        et.setMaxLines(1);
+        et.setFilters(new InputFilter[]{new InputFilter.LengthFilter(25)});
+        nameDialog.setIcon(R.drawable.ic_assignment_black_24dp);
+        nameDialog.setTitle("알람 이름 변경").setMessage("변경할 이름을 입력하세요").setView(et);
+        nameDialog.setPositiveButton("변경", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                nameTv.setText(et.getText());
+                if(et.getText().toString().equals("")) nameTv.setText("알람");
+
+            }
+        }).create().show();
+
     }
 
 
