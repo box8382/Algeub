@@ -139,11 +139,13 @@
         android:layout_marginBottom="8dp">
         <TableRow>
             <Button
+                android:id="@+id/alarm_view_cancel"
                 android:text="취소"
                 android:layout_marginRight="12dp"
                 android:layout_marginLeft="12dp"
                 android:backgroundTint="#555555"/>
             <Button
+                android:id="@+id/alarm_view_save"
                 android:text="저장"
                 android:layout_marginRight="12dp"
                 android:backgroundTint="#555555"/>

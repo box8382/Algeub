@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity{
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
 
-    //이거 왜 안바껴요ㅇㅈㅂㅇㅂㅇ
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
