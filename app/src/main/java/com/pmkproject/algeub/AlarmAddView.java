@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -35,8 +36,13 @@ public class AlarmAddView extends AppCompatActivity {
     boolean[] choiceRepeatBool=new boolean[]{false,false,false,false,false,false,false};
     Button save,cancel;
 
+    SQLiteDatabase db;
+    String dbName="Data.db";
+    String tableName="alarm";
+
     String repeat="안함";  //요일
     String name="알람";    //알람 제목
+
     Uri sound=RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);      //알람 uri
 
 
@@ -84,12 +90,19 @@ public class AlarmAddView extends AppCompatActivity {
                 Toast.makeText(AlarmAddView.this, "반복을 설정해주세요.", Toast.LENGTH_SHORT).show();
             }else {
                 // 24시간체계로 시간을 줌
-                Toast.makeText(AlarmAddView.this, "시간 : "+timePicker.getCurrentHour()+","+timePicker.getCurrentMinute()+"요일 : "+repeat+" 알람이름 : "+name+" 사운드 : "+
-                        RingtoneManager.getRingtone(AlarmAddView.this,sound).getTitle(AlarmAddView.this), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AlarmAddView.this, "시간 : "+timePicker.getCurrentHour()+","+timePicker.getCurrentMinute()+"요일 : "+repeat+" 알람이름 : "+name+" 사운드 : "+
+//                        RingtoneManager.getRingtone(AlarmAddView.this,sound).getTitle(AlarmAddView.this), Toast.LENGTH_SHORT).show();
+
+                String time=timePicker.getCurrentHour()+":"+timePicker.getCurrentMinute();
 
                 //데이터 베이스 (sqlite) 추가하면 됨
+                db=openOrCreateDatabase(dbName,MODE_PRIVATE,null);
 
+                db.execSQL("INSERT INTO "+ tableName +" (time, repeat, name, sound, onoff) Values('"+time+"','"+repeat+"','"+name+"','"+sound.toString()+"','"+0+"')");
 
+                db.close();
+
+                finish();
 
             }
 
@@ -129,11 +142,11 @@ public class AlarmAddView extends AppCompatActivity {
 
                 for(int i=0;i<repeatList.size();i++){
                     if(repeatList.size()-1==i) t.append(repeatList.get(i));
-                    else t.append(repeatList.get(i)+", ");
+                    else t.append(repeatList.get(i)+" ");
                 }
                 repeatTv.setText(t.toString());
-
                 repeat=repeatTv.getText().toString();
+                if(repeatList.size()==7) repeatTv.setText("매일");
                 if(repeatList.size()==0) repeatTv.setText("안함");
 
             }

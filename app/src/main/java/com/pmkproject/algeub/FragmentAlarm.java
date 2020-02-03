@@ -1,6 +1,8 @@
 package com.pmkproject.algeub;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class FragmentAlarm extends Fragment {
@@ -27,10 +30,57 @@ public class FragmentAlarm extends Fragment {
     ArrayList<ItemAlarm> items=new ArrayList<>();
     RecyclerAlarmAdapter adapter;
 
+    SQLiteDatabase db;
+    String dbName="Data.db";
+    String tableName="alarm";
+
     //데이터관리같은건 여기서 거의 맨처음 실행되고 onPause 되도 여기를 재시작안함
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    public void loadData(){
+        items.clear();
+        db=getActivity().openOrCreateDatabase(dbName,getActivity().MODE_PRIVATE,null);
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+tableName+" (num integer PRIMARY KEY autoincrement, time char(10), repeat char(20), name text, sound text, onoff integer)");
+
+        Cursor c=db.rawQuery("SELECT * FROM " + tableName, null);
+        if(c!=null){
+            while (c.moveToNext()){
+                int num=c.getInt(c.getColumnIndex("num"));
+                String time=c.getString(c.getColumnIndex("time"));
+                String name=c.getString(c.getColumnIndex("name"));
+                String repeat=c.getString(c.getColumnIndex("repeat"));
+                int onoff=c.getInt(c.getColumnIndex("onoff"));
+                if(time!=null){
+                    String[] arrTime=time.split(":");
+                    int hour=Integer.parseInt(arrTime[0]);
+                    boolean isPM=false;
+                    if(hour>=12) {
+                        hour=hour-12;
+                        isPM=true;
+                    }
+                    String[] arrRepeat=repeat.split(" ");
+                    String min=String.format("%02d", Integer.parseInt(arrTime[1]));
+                    items.add(new ItemAlarm(num,name+", "+(arrRepeat.length==7?"매일":repeat),(isPM?"오후":"오전")+"  "+hour+":"+min,(onoff==1?true:false)));
+                }
+
+            }
+        }
+
+        if(adapter!=null) {
+            adapter.notifyDataSetChanged();
+        }
+
+        db.close();
     }
 
     //onPause 됬다가 재시작됬을때 실행하는 부분이 이곳

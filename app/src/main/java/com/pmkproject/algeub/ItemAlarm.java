@@ -1,14 +1,24 @@
 package com.pmkproject.algeub;
 
 public class ItemAlarm {
+    int num;
     String name;
-    long time;
+    String time;
     boolean onOff;
 
-    public ItemAlarm(String name, long time, boolean onOff) {
+    public ItemAlarm(int num,String name, String time, boolean onOff) {
+        this.num=num;
         this.name = name;
         this.time = time;
         this.onOff = onOff;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getName() {
@@ -19,11 +29,11 @@ public class ItemAlarm {
         this.name = name;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
