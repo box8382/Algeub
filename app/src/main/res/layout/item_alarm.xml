@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alarm_item_card"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/puble200"
     app:cardCornerRadius="16dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
-    app:cardElevation="8dp">
+    android:layout_margin="5dp"
+    app:cardElevation="16dp">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/alarm_item_ampm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오전"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/alarm_item_time"
@@ -22,7 +33,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_margin="10dp"
-        android:text="알람 시간 표시"
+        android:layout_toRightOf="@+id/alarm_item_ampm"
+        android:text="00:00"
         android:textColor="@color/white"/>
 
     <TextView
@@ -30,9 +42,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="알람 이름"
+        android:text="이름"
+        android:textColor="@color/grey"
         android:layout_below="@id/alarm_item_time"
         android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/alarm_item_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/alarm_item_name"
+        android:layout_below="@id/alarm_item_time"
+        android:layout_marginLeft="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/baseColor500"
+        android:text="요일"/>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/alarm_item_onoff"

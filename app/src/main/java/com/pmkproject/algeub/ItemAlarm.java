@@ -3,14 +3,34 @@ package com.pmkproject.algeub;
 public class ItemAlarm {
     int num;
     String name;
+    String week;
+    String ampm;
     String time;
     boolean onOff;
 
-    public ItemAlarm(int num,String name, String time, boolean onOff) {
+    public ItemAlarm(int num, String name, String week,String ampm, String time, boolean onOff) {
         this.num=num;
         this.name = name;
+        this.week = week;
+        this.ampm = ampm;
         this.time = time;
         this.onOff = onOff;
+    }
+
+    public String getWeek() {
+        return week;
+    }
+
+    public void setWeek(String week) {
+        this.week = week;
+    }
+
+    public String getAmpm() {
+        return ampm;
+    }
+
+    public void setAmpm(String ampm) {
+        this.ampm = ampm;
     }
 
     public int getNum() {

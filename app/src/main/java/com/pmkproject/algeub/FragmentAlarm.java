@@ -1,6 +1,9 @@
 package com.pmkproject.algeub;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class FragmentAlarm extends Fragment {
 
@@ -34,10 +37,18 @@ public class FragmentAlarm extends Fragment {
     String dbName="Data.db";
     String tableName="alarm";
 
+    AlarmManager alarmManager;
+    PendingIntent pendingIntent;
+
     //데이터관리같은건 여기서 거의 맨처음 실행되고 onPause 되도 여기를 재시작안함
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
     }
 
     @Override
@@ -70,7 +81,7 @@ public class FragmentAlarm extends Fragment {
                     }
                     String[] arrRepeat=repeat.split(" ");
                     String min=String.format("%02d", Integer.parseInt(arrTime[1]));
-                    items.add(new ItemAlarm(num,name+", "+(arrRepeat.length==7?"매일":repeat),(isPM?"오후":"오전")+"  "+hour+":"+min,(onoff==1?true:false)));
+                    items.add(new ItemAlarm(num,name,arrRepeat.length==7?"매일":repeat,isPM?"오후":"오전",hour+":"+min,(onoff==1?true:false)));
                 }
 
             }
@@ -107,9 +118,6 @@ public class FragmentAlarm extends Fragment {
     View.OnClickListener floatingListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //add버튼이 눌러졌을경우
-//            items.add(new ItemAlarm("김땡땡",300,true));
-//            adapter.notifyDataSetChanged();
 
             Intent intent=new Intent(getActivity(),AlarmAddView.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
