@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RingActivity"></activity>
+        <activity android:name=".RingActivity" android:theme="@style/Transparent"></activity>
         <activity android:name=".AlarmAddView" />
         <activity android:name=".BoardSActivity" />
         <activity android:name=".BoardWriteActivity" />

@@ -68,8 +68,9 @@ public class FragmentAlarm extends Fragment {
             while (c.moveToNext()){
                 int num=c.getInt(c.getColumnIndex("num"));
                 String time=c.getString(c.getColumnIndex("time"));
-                String name=c.getString(c.getColumnIndex("name"));
                 String repeat=c.getString(c.getColumnIndex("repeat"));
+                String name=c.getString(c.getColumnIndex("name"));
+                String sound=c.getString(c.getColumnIndex("sound"));
                 int onoff=c.getInt(c.getColumnIndex("onoff"));
                 if(time!=null){
                     String[] arrTime=time.split(":");
@@ -81,7 +82,7 @@ public class FragmentAlarm extends Fragment {
                     }
                     String[] arrRepeat=repeat.split(" ");
                     String min=String.format("%02d", Integer.parseInt(arrTime[1]));
-                    items.add(new ItemAlarm(num,name,arrRepeat.length==7?"매일":repeat,isPM?"오후":"오전",hour+":"+min,(onoff==1?true:false)));
+                    items.add(new ItemAlarm(num,name,arrRepeat.length==7?"매일":repeat,isPM?"오후":"오전",hour+":"+min,(onoff==1?true:false),sound));
                 }
 
             }

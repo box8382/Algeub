@@ -42,6 +42,7 @@ public class RingtonePlayingService extends Service {
         int hour= intent.getExtras().getInt("hour");
         int min = intent.getExtras().getInt("min");
         String[] weeks=intent.getStringArrayExtra("weeks");
+        String sound=intent.getExtras().getString("sound");
 
 //        Log.e("weeks",Calendar.getInstance().DAY_OF_WEEK+" 오늘 요일");
         int nWeek=Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
@@ -73,7 +74,6 @@ public class RingtonePlayingService extends Service {
                     nStringWeek="몰라";
                     break;
         }
-
         for(int i=0;i<weeks.length;i++){
             if(weeks[i].equals(nStringWeek)){
                 ringring=true;
@@ -91,7 +91,7 @@ public class RingtonePlayingService extends Service {
 
                 Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                         .setContentTitle("알람시작")
-                        .setContentText("알람음이 재생됩니다.")
+                        .setContentText(name+" 알람이 재생됩니다.")
                         .setSmallIcon(R.drawable.ic_appicon)
 
                         .build();
@@ -103,6 +103,7 @@ public class RingtonePlayingService extends Service {
             ring.putExtra("name",name);
             ring.putExtra("hour",hour);
             ring.putExtra("min",min);
+            ring.putExtra("sound",sound);
             startActivity(ring.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
 

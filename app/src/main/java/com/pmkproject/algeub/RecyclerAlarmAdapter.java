@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,12 +99,12 @@ public class RecyclerAlarmAdapter extends RecyclerView.Adapter {
                     new AlertDialog.Builder(context).setMessage("삭제하시겠습니까?").setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            alarmStop(i.getNum());
                             db=context.openOrCreateDatabase(dbName,context.MODE_PRIVATE,null);
                             db.execSQL("DELETE FROM "+tableName+" WHERE num="+i.getNum());
                             db.close();
                             items.remove(pos);
                             notifyDataSetChanged();
-                            //todo 알람이 체크되있는상태에서 제거를할시 알람도 같이꺼줘야될거같음 고민
                         }
                     }).setNegativeButton("취소",null).create().show();
 
@@ -127,7 +128,7 @@ public class RecyclerAlarmAdapter extends RecyclerView.Adapter {
                     if(b){
                         String[] arr=i.getTime().split(":");
                         int pm=i.getAmpm()=="오후"?12:0;
-                        alarmStart(Integer.parseInt(arr[0])+pm,Integer.parseInt(arr[1]),i.getNum(),i.getName(),i.getWeek());
+                        alarmStart(Integer.parseInt(arr[0])+pm,Integer.parseInt(arr[1]),i.getNum(),i.getName(),i.getWeek(),i.getSound());
                     }else {
                         alarmStop(i.getNum());
                     }
@@ -145,7 +146,7 @@ public class RecyclerAlarmAdapter extends RecyclerView.Adapter {
 
     }
 
-    public void alarmStart(int hour, int min,int num,String name,String week){
+    public void alarmStart(int hour, int min,int num,String name,String week,String sound){
         String[] weeks;
         if(week.equals("매일")){
             weeks=new String[]{"월","화","수","목","금","토","일"};
@@ -170,6 +171,9 @@ public class RecyclerAlarmAdapter extends RecyclerView.Adapter {
         intent.putExtra("hour",hour);
         intent.putExtra("min",min);
         intent.putExtra("weeks",weeks);
+        intent.putExtra("sound",sound);
+
+
 
 
         PendingIntent pendingIntent=PendingIntent.getBroadcast(context,num,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -180,10 +184,10 @@ public class RecyclerAlarmAdapter extends RecyclerView.Adapter {
     public void alarmStop(int num){
 
         if(alarmManager!=null && intent!=null){
-            Toast.makeText(context, "알람종료", Toast.LENGTH_SHORT).show();
-
             PendingIntent pendingIntent=PendingIntent.getBroadcast(context,num,intent,PendingIntent.FLAG_NO_CREATE);
-            alarmManager.cancel(pendingIntent);
+            if(pendingIntent!=null){
+                alarmManager.cancel(pendingIntent);
+            }
         }
 
     }

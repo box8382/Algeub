@@ -7,14 +7,24 @@ public class ItemAlarm {
     String ampm;
     String time;
     boolean onOff;
+    String sound;
 
-    public ItemAlarm(int num, String name, String week,String ampm, String time, boolean onOff) {
+    public ItemAlarm(int num, String name, String week,String ampm, String time, boolean onOff,String sound) {
         this.num=num;
         this.name = name;
         this.week = week;
         this.ampm = ampm;
         this.time = time;
         this.onOff = onOff;
+        this.sound=sound;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 
     public String getWeek() {

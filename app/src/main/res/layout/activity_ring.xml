@@ -4,33 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RingActivity">
+    tools:context=".RingActivity"
+    android:background="@color/transparent">
 
     <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알람시간"
-        android:layout_above="@id/tv2"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/ring_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="알람이름"
-        android:layout_above="@id/tv"
-        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:textSize="40sp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/ring_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="알람이 울립니다."/>
+        android:text="알람시간"
+        android:layout_below="@id/ring_name"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ring_stop"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        app:cardBackgroundColor="@color/ringcolor"
+        app:cardCornerRadius="30dp"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람 정지"
+            android:layout_gravity="center"
+            android:textSize="23sp"
+            android:textStyle="bold"/>
+    </androidx.cardview.widget.CardView>
+
+
+
 
 </RelativeLayout>

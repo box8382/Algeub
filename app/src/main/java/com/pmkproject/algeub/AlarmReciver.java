@@ -18,6 +18,7 @@ public class AlarmReciver extends BroadcastReceiver {
         int hour = intent.getExtras().getInt("hour",0);
         int min = intent.getExtras().getInt("min",0);
         String[] weeks=intent.getExtras().getStringArray("weeks");
+        String sound=intent.getExtras().getString("sound");
 
         // RingtonePlayingService 서비스 intent 생성
         Intent service_intent = new Intent(context, RingtonePlayingService.class);
@@ -27,6 +28,7 @@ public class AlarmReciver extends BroadcastReceiver {
         service_intent.putExtra("hour", hour);
         service_intent.putExtra("min", min);
         service_intent.putExtra("weeks", weeks);
+        service_intent.putExtra("sound", sound);
         // start the ringtone service
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
